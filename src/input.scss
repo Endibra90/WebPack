@@ -1,0 +1,15 @@
+@import "variables.scss";
+@import "mixin.scss";
+@include body($color_secondary,$color_primary);
+header{
+    height:20%;
+}
+section{
+    height: 30%;
+}
+footer{
+    height: 50%;
+    //background-color: $color_secondary;
+}
+
+
