@@ -42,9 +42,9 @@ module.exports = {
         compress: true,
         port: 8080
     },
-    entry: ['./src/index.js', './src/index.html'],
+    entry: ['./src/script.js', './src/index.html'],//si no pones index.js break .
     output: {
-        filename: 'index.js',
+        filename: 'script.js',
         path: path.resolve(__dirname, 'dist'),
     },
 
