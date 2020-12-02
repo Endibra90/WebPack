@@ -1,32 +1,34 @@
 const path = require('path');
 const loader = require('sass-loader');
 const MiniCSSExtractPlugin = require('mini-css-extract-plugin');
-module.exports = {
+module.exports =(env,options)=> ({
     module: {
         rules: [
             {
-                test: /\.s[ac]ss$/i,
-                use: [
-                    "style-loader",
+                test:/\.s[ac]ss$/i,
+                use:[
                     "css-loader",
                     {
-                        loader: 'sass-loader',
-                        options: {
-                            sourceMap: true,
-                            sassOptions: {
-                                outputStyle: "compressed",
+                        loader:"sass-loader",
+                        options:{
+                            additionalData:"$icon-font-path: '" + path.resolve(__dirname,'node_modules','bootstrap-sass','assets','fonts')+"';",
+                            implementation:require("sass"),
+                            sassOptions:{
+                                includePaths:[path.resolve(__dirname,'node_modules','bootstrap-sass','assets','stylesheets')],
+                                outputStyle: options.mode=== 'development' ? 'expanded' : 'compressed'
                             },
+                            sourceMap:options.mode=== 'development',
+                            webpackImporter:false
                         },
-                    }
-                ],
-                include: [path.resolve(__dirname, 'src/')]
-            },
-            {
-                test: /\.html$/i,
-                loader: 'html-loader',
-            },
+                    },
         ],
+        include: [path.resolve(__dirname, 'src/')]
     },
+    {
+        test: /\.html$/i,
+        loader: 'html-loader',
+    },
+]},
     plugins: [
         new MiniCSSExtractPlugin({
             filename: "/dist/input.css",
@@ -48,4 +50,4 @@ module.exports = {
         path: path.resolve(__dirname, 'dist'),
     },
 
-};
+});

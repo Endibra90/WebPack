@@ -5,11 +5,11 @@
   "private": true,
   "scripts": {
     "build": "webpack --mode production && cp -v ./src/index.html ./dist/",
-    "prebuild": "rm -r dist",
+    "prebuild": "rm -fr dist",
     "start": "webpack --mode development && cp -v ./src/index.html ./dist/",
     "js": "babel . --out-dir dist --ignore node_modules",
     "poststart": "webpack serve",
-    "prestart": "rm -r dist"
+    "prestart": "rm -fr dist"
   },
   "keywords": [],
   "author": "",
@@ -28,6 +28,7 @@
   },
   "dependencies": {
     "babel": "^6.23.0",
+    "bootstrap-sass": "^3.4.1",
     "css-loader": "^5.0.1",
     "html-webpack-plugin": "^4.5.0",
     "leaflet": "^1.7.1",
